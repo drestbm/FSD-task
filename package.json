@@ -1,0 +1,19 @@
+{
+  "name": "fsd-frontend",
+  "version": "1.0.0",
+  "description": "completing a task from FSD",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drestbm/FSD-task.git"
+  },
+  "author": "drestbm",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drestbm/FSD-task/issues"
+  },
+  "homepage": "https://github.com/drestbm/FSD-task#readme"
+}
