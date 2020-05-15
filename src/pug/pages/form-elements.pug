@@ -1,0 +1,16 @@
+extends ../common/layout-ui-kit.pug
+
+block variables
+    - var title = 'Элементы'
+
+block content
+    include ../UI-KIT/colors-and-types/color.pug
+    include ../UI-KIT/colors-and-types/type.pug
+
+    main(class="colors-types-wrapper")
+        section(class="colors")
+            each item in colors
+                + color(item.name, item.hex, item.class)
+        section(class="types")
+            each item in fonts
+                + type(item.name, item.desc, item.class)
