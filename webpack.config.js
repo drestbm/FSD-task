@@ -13,7 +13,7 @@ const isProd =  process.env.NODE_ENV === 'production'
 const PATHS = {
     src: path.join(__dirname, 'src'),
     dist: path.join(__dirname, 'dist'),
-    assets: 'assets/'
+    assets: path.join(__dirname, 'src', 'assets'),
 }
 
 const PAGES_DIR = path.join(`${PATHS.src}`, 'pug', 'pages')
@@ -53,7 +53,8 @@ module.exports = {
         extensions: ['.js', '.css', '.png', '.svg', '.jpg'],
         alias: {
             '@': `${PATHS.src}`,
-            '@styles': path.join(`${PATHS.src}`, 'sass')
+            '@styles': path.join(`${PATHS.src}`, 'sass'),
+            '@assets': `${PATHS.assets}`,
         }
     },
     optimization: optimization(),
@@ -115,7 +116,7 @@ module.exports = {
                 use: ['file-loader']
             },
             {
-                test: /\.(ttf|eof|woff|woff2)$/,
+                test: /\.(ttf|eot|woff|woff2)$/,
                 use: ['file-loader']
             },
         ]

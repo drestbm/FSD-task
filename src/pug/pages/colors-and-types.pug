@@ -6,6 +6,7 @@ block variables
 
 block content
     include ../UI-KIT/colors-and-types/color.pug
+    include ../UI-KIT/colors-and-types/type.pug
 
     - 
         var colors = [
@@ -19,10 +20,10 @@ block content
         ];
     -
         var fonts = [
-            {name: "H1", desc: "This one is the sub-section or widget title"},
-            {name: "H2", desc: "Next one is the item title inside widgets"},
-            {name: "H3", desc: "This is label or CTA text"},
-            {name: "BODY", desc: "This is the body text which is used for most of the design, like paragraphs, lists, etc."}
+            {name: "H1", desc: "This one is the sub-section or widget title", class: "big_header"},
+            {name: "H2", desc: "Next one is the item title inside widgets", class: "medium_header"},
+            {name: "H3", desc: "This is label or CTA text", class: "small_header"},
+            {name: "BODY", desc: "This is the body text which is used for most of the design, like paragraphs, lists, etc.", class: "simple_text"}
         ]
 
     main(class="colors-types-wrapper")
@@ -31,4 +32,4 @@ block content
                 + color(item.name, item.hex, item.class)
         section(class="types")
             each item in fonts
-                + color(item.name, item.hex)
+                + type(item.name, item.desc, item.class)
