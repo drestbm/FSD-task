@@ -1,0 +1,125 @@
+$ds-100: #1f2041;
+$ds-75: rgba(31, 32, 65, .75);
+$ds-50: rgba(31, 32, 65, .50);
+$ds-25: rgba(31, 32, 65, .25);
+$ds-5: rgba(31, 32, 65, .05);
+
+h1
+    font-family: 'Quicksand'
+    font-style: normal
+    font-weight: 700
+    font-size: 24px
+    color: $ds-100
+    margin: 0
+
+h2 
+    font-family: 'Quicksand'
+    font-style: normal
+    font-weight: 700
+    font-size: 19px
+    color: #1F2041
+    margin: 0
+
+h3 
+    font-family: 'Quicksand'
+    font-style: normal
+    font-weight: 700
+    font-size: 12px
+    color: #1F2041
+    text-transform: uppercase
+    margin: 0
+
+body 
+    font-family: 'Quicksand'
+    font-style: normal
+    font-weight: 400
+    font-size: 14px
+    color: rgba(31, 32, 65, 0.75)
+    margin: 0
+
+.colors-types-wrapper 
+    display: grid
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr))
+    grid-row-gap: 50px
+
+    padding: 145px 150PX
+    min-width: 320px
+    max-width: 1920px
+
+.colors 
+    justify-self: start
+
+    display: grid
+    grid-template-rows: repeat(7, 1fr)
+    grid-gap: 20px
+
+.color 
+    display: grid
+    grid-template-columns: 70px 1fr
+    column-gap: 40px
+    grid-template-areas: "c__example c__name" "c__example c__hex"
+
+.color__example 
+    grid-area: c__example
+    width: 70px
+    height: 70px
+    background-color: aqua
+    border-radius: 6px
+
+.color__name 
+    grid-area: c__name
+    align-self: end
+
+.color__hex 
+    grid-area: c__hex
+    font-weight: 400
+
+.types 
+    justify-self: end
+    display: grid
+    align-items: center
+    grid-template-rows: repeat(4,1fr)
+    grid-row-gap: 50px
+    height: 320px
+
+.type 
+    display: grid
+    grid-template-columns: 40px auto
+    grid-gap: 30px
+    grid-auto-flow: column
+
+.type__name 
+    justify-self: end
+    color: rgba(31, 32, 65, 0.25)
+
+.logo-48 
+    max-width: 48px
+    min-width: 24px
+    max-height: 48px
+    min-height: 24px
+
+.colors-types-wrapper__logo 
+    position: absolute
+    top: 30px
+    left: 30px
+
+.dark-shade-100 
+    background-color: #1f2041
+
+.dark-shade-75 
+    background-color: rgba(31, 32, 65, .75)
+
+.dark-shade-50 
+    background-color: rgba(31, 32, 65, .5)
+
+.dark-shade-25 
+    background-color: rgba(31, 32, 65, .25)
+
+.dark-shade-5 
+    background-color: rgba(31, 32, 65, .5)
+
+.purple 
+    background-color: #BC9CFF
+
+.green 
+    background-color: #6FCF97
