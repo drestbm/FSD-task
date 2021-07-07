@@ -1,1 +1,2 @@
-console.log('123')
+import '@assets/css/fonts.css';
+import '@styles/styles.sass';

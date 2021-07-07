@@ -1,4 +1,5 @@
 const path = require('path')
+const fs = require('fs')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -8,6 +9,17 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 const isDev =  process.env.NODE_ENV === 'development'
 const isProd =  process.env.NODE_ENV === 'production'
+
+const PATHS = {
+    src: path.join(__dirname, 'src'),
+    dist: path.join(__dirname, 'dist'),
+    assets: path.join(__dirname, 'src', 'assets'),
+}
+
+const PAGES_DIR = path.join(`${PATHS.src}`, 'pug', 'pages')
+const PAGES = fs.readdirSync(PAGES_DIR).filter(fileName => fileName.endsWith('.pug'))
+
+
 
 const optimization = () => {
     const config = {
@@ -27,17 +39,22 @@ const optimization = () => {
 }
 
 module.exports = {
-    context: path.resolve(__dirname, 'src'),
+    externals: {
+        paths: PATHS
+    },
+    context: `${PATHS.src}`,
     mode: 'development',
     entry: './index.js',
     output: {
         filename: '[name].[hash].js',
-        path: path.resolve(__dirname, 'dist')
+        path: `${PATHS.dist}`,
     },
     resolve: {
         extensions: ['.js', '.css', '.png', '.svg', '.jpg'],
         alias: {
-            '@': path.resolve(__dirname, 'src'),
+            '@': `${PATHS.src}`,
+            '@styles': path.join(`${PATHS.src}`, 'sass'),
+            '@assets': `${PATHS.assets}`,
         }
     },
     optimization: optimization(),
@@ -46,12 +63,6 @@ module.exports = {
         hot: isDev,
     },
     plugins: [
-        new HTMLWebpackPlugin({
-            template: './index.html',
-            minify: {
-                collapseWhitespace: isProd
-            }
-        }),
         new CleanWebpackPlugin(),
         new CopyWebpackPlugin([
             {
@@ -61,7 +72,11 @@ module.exports = {
         ]),
         new MiniCSSExtractPlugin({
             filename: '[name].[hash].css',
-        })
+        }),
+        ...PAGES.map(page => new HTMLWebpackPlugin({
+            template: path.join(`${PAGES_DIR}`, `${page}`),
+            filename: `./${page.replace(/\.pug/,'.html')}`
+        }))
     ],
     module: {
         rules: [
@@ -78,22 +93,6 @@ module.exports = {
                     'css-loader'
                 ]
             },
-            //от less наверное откажусь!!!!
-            {
-                test: /\.less$/,
-                use: [
-                    {
-                        loader: MiniCSSExtractPlugin.loader,
-                        options: {
-                            hmr: isDev,
-                            reloadAll: true
-                        }
-                    },
-                    'css-loader',
-                    'less-loader',
-
-                ]
-            },
             {
                 test: /\.s[ac]ss$/,
                 use: [
@@ -106,7 +105,6 @@ module.exports = {
                     },
                     'css-loader',
                     'sass-loader',
-
                 ]
             },
             {
@@ -118,7 +116,7 @@ module.exports = {
                 use: ['file-loader']
             },
             {
-                test: /\.(ttf|eof|woff|woff2)$/,
+                test: /\.(ttf|eot|woff|woff2)$/,
                 use: ['file-loader']
             },
         ]

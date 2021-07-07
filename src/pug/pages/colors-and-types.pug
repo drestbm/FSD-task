@@ -1,0 +1,35 @@
+extends ../common/layout-ui-kit.pug
+
+
+block variables
+    - var title = 'Цвета и шрифты'
+
+block content
+    include ../UI-KIT/colors-and-types/color.pug
+    include ../UI-KIT/colors-and-types/type.pug
+
+    - 
+        var colors = [
+            { name: "Dark Shade 100%", hex: "#1f2041", class: "dark-shade-100"},
+            { name: "Dark Shade 75%", hex: "#1f2041", class: "dark-shade-75"},
+            { name: "Dark Shade 50%", hex: "#1f2041", class: "dark-shade-50"},
+            { name: "Dark Shade 25%", hex: "#1f2041", class: "dark-shade-25"},
+            { name: "Dark Shade 5%", hex: "#1f2041", class: "dark-shade-5"},
+            { name: "Purple", hex: "#BC9CFF", class: "purple"},
+            { name: "Green", hex: "##6FCF97", class: "green"}
+        ];
+    -
+        var fonts = [
+            {name: "H1", desc: "This one is the sub-section or widget title", class: "big_header"},
+            {name: "H2", desc: "Next one is the item title inside widgets", class: "medium_header"},
+            {name: "H3", desc: "This is label or CTA text", class: "small_header"},
+            {name: "BODY", desc: "This is the body text which is used for most of the design, like paragraphs, lists, etc.", class: "simple_text"}
+        ]
+
+    main(class="colors-types-wrapper")
+        section(class="colors")
+            each item in colors
+                + color(item.name, item.hex, item.class)
+        section(class="types")
+            each item in fonts
+                + type(item.name, item.desc, item.class)
